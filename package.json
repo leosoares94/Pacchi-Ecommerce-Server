@@ -1,0 +1,44 @@
+{
+  "name": "pacchi-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/leosoares94",
+  "author": "Leo Soares",
+  "license": "y",
+  "private": true,
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcrypt": "^5.0.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
+    "handlebars-helpers": "^0.10.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.25",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.4.11",
+    "nodemailer-express-handlebars": "^4.0.0",
+    "pg": "^8.3.0",
+    "sequelize": "^6.3.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.10",
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "jest": "^26.4.2",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5",
+    "sequelize-cli": "^6.2.0",
+    "supertest": "^4.0.2"
+  },
+  "scripts": {
+    "pretest": "set NODE_ENV=test && sequelize db:migrate",
+    "dev": "nodemon src/server.js",
+    "test": "jest --detectOpenHandles --coverage",
+    "posttest": "set NODE_ENV=development && sequelize db:migrate:undo:all"
+  }
+}
