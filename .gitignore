@@ -1,7 +1,7 @@
 node_modules
+coverage
 .env
 *.log
-coverage
+
 *.css
-*.html
-*.lcov.info
+
