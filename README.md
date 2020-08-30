@@ -1,5 +1,5 @@
 
-![Readme cover](src/public/README_COVER.jpg)
+![Readme cover](src/public/img/README_COVER.jpg)
 <h1>Pacchi E-commerce Server</h1>
 
 <p>This is a simple back-end of the Pacchi Shop app </p>
