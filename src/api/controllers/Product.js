@@ -98,7 +98,7 @@ const editProduct = async (req, res) => {
     const schema = Joi.object({
         name: Joi.string().min(5).max(30),
         description: Joi.string().min(8),
-        amount: Joi.string().required(),
+        amount: Joi.string(),
         stock: Joi.number(),
         type: Joi.string(),
         color: Joi.string(),

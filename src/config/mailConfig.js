@@ -28,11 +28,11 @@ const options = {
 
 handlebars.registerHelper('math', (lvalue, operator, rvalue) => {
     return {
-        '+': lvalue + rvalue,
-        '-': lvalue - rvalue,
+        '+': lvalue + rvalue.toFixed(2).toString().replace('.', ','),
+        '-': lvalue - rvalue.toFixed(2).toString().replace('.', ','),
         '*': (lvalue * rvalue).toFixed(2).toString().replace('.', ','),
-        '/': lvalue / rvalue,
-        '%': lvalue % rvalue
+        '/': lvalue / rvalue.toFixed(2).toString().replace('.', ','),
+        '%': lvalue % rvalue.toFixed(2).toString().replace('.', ',')
     }[operator];
 });
 

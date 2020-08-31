@@ -1,4 +1,4 @@
-const { resolve } = require('path');
+require('dotenv').config();
 const mailService = require('../../config/mailConfig');
 
 const OrderModel = require('../models/Order');
@@ -59,16 +59,42 @@ const createOrder = async (req, res) => {
         template: 'layout',
         attachments: [
             {
+                filename: 'email-cover.jpg',
+                path: `${process.env.SERVER_URL}/img/email-cover.jpg`,
+                cid: '@cover'
+            },
+            {
                 filename: avatarFileName,
-                path: `http://localhost:3000/tmp/uploads/${avatarFileName}`,
+                path: `${process.env.SERVER_URL}/tmp/uploads/${avatarFileName}`,
                 cid: '@avatar'
+            },
+            {
+                filename: 'shopping-cart-icon',
+                path: `${process.env.SERVER_URL}/img/shopping-cart-icon.png`,
+                cid: '@shopping-cart-icon'
+            },
+            {
+                filename: 'price-tag-icon',
+                path: `${process.env.SERVER_URL}/img/price-tag-icon.png`,
+                cid: '@price-tag-icon'
             }
         ],
         context: {
             username: solicitor.username,
             useremail: solicitor.email,
             products: newCart.products,
-            phone: solicitor.phone ? solicitor.phone : 'Telefone não informado'
+            phone: solicitor.phone ? solicitor.phone : 'Telefone não informado',
+            total: () => {
+                const subTotals = [];
+                newCart.products.forEach((product) => {
+                    subTotals.push(product.price * product.quantity);
+                });
+                return subTotals
+                    .reduce((total, value) => total + value)
+                    .toFixed(2)
+                    .toString()
+                    .replace('.', ',');
+            }
         }
     };
 

@@ -11,13 +11,13 @@
 
 <body>
     <div class="top-content">
-        <i class="fa fa-shopping-cart fa-lg"></i>
+        <div class="cart-icon"></div>
         <h3>Você tem um novo pedido!</h3>
     </div>
     <div class="header">
         <div class="user-pic-container">
             <div class="user-pic">
-               
+
             </div>
             <h3>{{username}}</h3>
             <h4>{{useremail}}</h4>
@@ -36,16 +36,27 @@
                         <h5>cod:&nbsp; {{this.product_code}}</h5>
                         <h5>{{this.color}}</h5>
                     </div>
+                    <br>
+                    <div class="price">
+                        <h3>Preço: <span>R$</span>{{math this.price '*' 1}}</h3>
+                    </div>
                 </div>
-                <div class="quantity-and-total">
+                
+                <div class="quantity-and-subtotal">
                     <h4>{{this.quantity}}</h4>
-                    <h5>.uni&nbsp;&nbsp;&nbsp;</h5>
+                    <h5>.uni&nbsp; | &nbsp;</h5>
                     <h4>Subtotal:&nbsp;</h4>
-                    <h3>R${{math this.price "*" this.quantity}}</h3>
+                    <h3><span>R$</span>{{math this.price "*" this.quantity}}</h3>
                 </div>
             </div>
         </div>
         {{/each}}
+        <div class="total">
+            <div class="price-icon"></div>
+            <h3>Total: <span style="font-size: 15px; padding-right:0px;">R$</span>
+               {{total}}
+            </h3>
+        </div>
     </div>
 
     <style>
@@ -53,6 +64,11 @@
             margin: 0;
             padding: 0;
             font-family: sans-serif;
+        }
+
+        span{
+            font-size: 12px;
+            padding-right: 2px;
         }
 
         body {
@@ -74,6 +90,13 @@
             padding-left: 10px;
         }
 
+        .cart-icon {
+            width: 22px;
+            height: 22px;
+            background-image: url('cid:@shopping-cart-icon');
+            background-size: contain;
+        }
+
         .header {
             box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
         }
@@ -85,7 +108,9 @@
             flex-direction: column;
             justify-content: space-evenly;
             align-items: center;
-            background-color: #c0e000;
+            background-image: url('cid:@cover');
+            background-position: center;
+            background-size: cover;
             color: #fff;
         }
 
@@ -117,22 +142,25 @@
 
         .item {
             width: 100%;
-            height: 180px;
+            height: 210px;
             border-bottom: thin solid #ff5c7763;
+            border-bottom-right-radius: 30px;
+            border-bottom-left-radius: 30px;
             display: flex;
             flex-direction: row;
             align-items: center;
             box-sizing: border-box;
             padding-left: 15px;
             padding-right: 15px;
+            padding-bottom: 10px;
         }
 
-        .product-image {
+        {{!-- .product-image {
             width: 90px;
             height: 90px;
-            background-color: red;
+            background-color: rgb(211, 211, 211);
             border-radius: 0%;
-        }
+        } --}}
 
         .product-info {
             flex-grow: 1;
@@ -145,7 +173,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding-top: 15px;
+            padding-top: 5px;
             text-align: center;
         }
 
@@ -159,7 +187,14 @@
             text-align-last: center;
         }
 
-        .quantity-and-total {
+        .price {
+            padding: 10px;
+            background-color: #00c59e;
+            border-radius: 10px;
+            color: #fff;
+        }
+
+        .quantity-and-subtotal {
             width: 100%;
             height: 60px;
             display: flex;
@@ -180,6 +215,26 @@
             justify-content: center;
             align-items: center;
             font-weight: lighter;
+        }
+        
+        .price-icon {
+            width: 22px;
+            height: 22px;
+            background-image: url('cid:@price-tag-icon');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+
+        .total {
+            width: 100%;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #00c59e;
+            color: #fff;
+            border-radius: 10px;
         }
     </style>
 </body>

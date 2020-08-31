@@ -5,10 +5,14 @@ const databaseConfig = require('../config/database');
 
 const uri = process.env.MONGO_URI;
 
-mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+mongoose
+    .connect(uri, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(() => {
+        console.log('MongoDB connected successfully');
+    });
 
 const User = require('../api/models/User');
 const Product = require('../api/models/Product');
@@ -21,6 +25,8 @@ models.map((model) => model.sync());
 
 const server = new Sequelize(databaseConfig);
 
-server.authenticate();
+server.authenticate().then(() => {
+    console.log('Sequelize ORM is ready');
+});
 
 module.exports = server;
